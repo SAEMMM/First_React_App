@@ -17,6 +17,8 @@ export default App;
 
 const StBackground = styled.div`
   width: 100%;
+  height: 1000px;
+  background-color: CornflowerBlue;
   display: flex;
   justify-content: center;
   padding: 20px;
