@@ -49,6 +49,7 @@ const StLeftProfile = styled.div`
   justify-content: space-around;
   border-radius: 20px;
   align-itemS: center;
+  border: 1px solid black;
 `
 
 const StProfileImg = styled.div`

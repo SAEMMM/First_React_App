@@ -7,7 +7,7 @@ function MidMain() {
         <Background>
             <StMiddle>
                 <StMiddleHeader>
-                    <h1>First React App</h1>
+                    <h1>First React App 🏠</h1>
                 </StMiddleHeader>
                 <StMiddleBoard>
                     방명록1 | 안녕하세요 <br />
@@ -46,6 +46,9 @@ const StMiddle = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-width: 0px 1px 1px 1px;
+  border-color: black;
+  border-style: solid;
 `
 
 const StMiddleHeader = styled.div`
@@ -56,18 +59,20 @@ const StMiddleHeader = styled.div`
     background-color: Silver;
     display: flex;
     align-items: flex-end;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-style: black;
 `
 
 const StMiddleBoard = styled.div`
     box-sizing: border-box;
     width: 600px;
     height: 200px;
-    /* background-color: skyblue; */
     margin-top: 20px;
     line-height: 30px;
     padding: 10px;
     border-bottom-style: solid;
-    border-bottom-width: 2px;;
+    border-bottom-width: 2px;
     border-bottom-style: black;
 `
 
