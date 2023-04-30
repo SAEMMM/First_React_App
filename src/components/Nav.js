@@ -14,10 +14,12 @@ export default Nav
 const Background = styled.div`
     width: 320px;
     height: 820px;
+    padding: 40px 0px 10px 0px;
+    box-sizing: border-box;
     background-color: Silver;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     border-radius: 20px;
 `
 

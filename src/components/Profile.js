@@ -12,8 +12,8 @@ function Profile() {
                     싸이월드 클론은 아니고 st에요 방명록 남겨주세요~</StProfileMsg>
                 <StProfileHr />
                 <StProfileName>
-                    신샘(♀) 1996. 8. 30<br />
-                    Velog saemmmm.log
+                    <span className='span'>신샘</span>(♀) 1996. 8. 30<br />
+                    Velog <span className='span'>saemmmm.log</span>
                 </StProfileName>
                 <StProfileLike>
                     <FaHeart className='heart' />
@@ -29,10 +29,12 @@ export default Profile
 const Background = styled.div`
     width: 320px;
     height: 820px;
+    padding: 40px 0px 10px 0px;
+    box-sizing: border-box;
     background-color: Silver;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     border-radius: 20px;
 `
 
@@ -46,6 +48,7 @@ const StLeftProfile = styled.div`
   flex-direction: column;
   justify-content: space-around;
   border-radius: 20px;
+  align-itemS: center;
 `
 
 const StProfileImg = styled.div`
@@ -53,14 +56,11 @@ const StProfileImg = styled.div`
     height: 200px;
     background-size: cover;
     background-position: center;
-    margin: auto;
 `
 
 const StProfileMsg = styled.div`
     width: 200px;
     height: 300px;
-    /* background-color: white; */
-    margin: auto;
     text-align: center;
     display: flex;
     align-items: center;
@@ -68,7 +68,6 @@ const StProfileMsg = styled.div`
 const StProfileHr = styled.hr`
     width: 230px;
     height: 2px;
-    margin: auto;
     background-color: black;
     border: none;
 `
@@ -76,16 +75,16 @@ const StProfileHr = styled.hr`
 const StProfileName = styled.div`
     width: 200px;
     height: 50px;
-    /* background-color: white; */
-    margin: auto;
     text-align: center;
+    .span {
+        color: CornflowerBlue;
+        font-weight: bold;
+    }
 `
 
 const StProfileLike = styled.div`
     width: 200px;
     height: 70px;
-    /* background-color: white; */
-    margin: auto;
     text-align: center;
     display: flex;
     justify-content: center;
