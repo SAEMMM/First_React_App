@@ -1,2 +1,3 @@
 ### 초기 UI 설계
-![first-react-app-UI](https://user-images.githubusercontent.com/127721029/235303301-165b6bc0-8ebb-435b-90ac-bbde44537293.png)
+![first-react-app-UI](https://user-images.githubusercontent.com/127721029/235308918-824e72bb-5b5e-4a8d-bfab-a99e397f89ea.png)
+
