@@ -16,12 +16,19 @@
       "contents": "두번째 방명록 내용이에요"
     },
     {
-      "writer": "tester",
-      "id": 3
+      "writer": "tesrer",
+      "contents": "test333",
+      "id": 5
     },
     {
-      "writer": "테스터",
-      "id": 4
+      "writer": "신샘",
+      "contents": "남기고 싶은 말을 10자 이상!",
+      "id": 6
+    },
+    {
+      "writer": "ㅁㅇㄹ",
+      "contents": "ㅂㅇㄹㄴㅁㅇ",
+      "id": 7
     }
   ]
 }

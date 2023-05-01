@@ -45,7 +45,7 @@ function Visited() {
     return (
         <Background>
             <StMiddle>
-                <form onSubmit={() => {
+                <form onSubmit={(e) => {
                     // e.preventDefault()
                     onSubmitHandler()
                 }}>
@@ -53,14 +53,14 @@ function Visited() {
                         <VisitedInput placeholder='남기고 싶은 말을 10자 이상 작성해주세요!'
                             value={addBoard.contents}
                             onChange={(e) => {
-                                setAddBoard({ contents: e.target.value })
+                                setAddBoard({ contents: e.target.value, writer: addBoard.writer })
                             }} />
                         <VisitedInputFooter>
                             <span className='span'>작성자 </span>
                             <VisitedInputWriter placeholder='8자 미만'
                                 value={addBoard.writer}
                                 onChange={(e) => {
-                                    setAddBoard({ writer: e.target.value })
+                                    setAddBoard({ writer: e.target.value, contents: addBoard.contents })
                                 }} />
                             <StBtn btn="확인">확인 💬</StBtn>
                         </VisitedInputFooter>
