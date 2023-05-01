@@ -4,17 +4,24 @@ import Nav from "./components/Nav";
 import Profile from "./components/Profile";
 import Visited from "./pages/Visited";
 import { Route, Routes, Outlet } from 'react-router-dom';
+import VisitedDetail from "./pages/VisitedDetail";
+import { QueryClient, QueryClientProvider } from "react-query"
+
+const queryClient = new QueryClient();
 
 function App() {
   return (
+    <QueryClientProvider client={queryClient}>
       <StBackground>
         <Profile />
         <Routes>
           <Route path="/" element={<MidMain />} />
           <Route path="/visited" element={<Visited />} />
+          <Route path="/:id" element={<VisitedDetail />} />
         </Routes>
         <Nav />
       </StBackground>
+    </QueryClientProvider>
   );
 }
 

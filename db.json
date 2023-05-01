@@ -8,26 +8,24 @@
     {
       "id": 1,
       "writer": "신샘",
-      "contents": "첫번째 방명록 내용이에요"
+      "contents": "첫번째 방명록 내용이에요",
+      "edit": false
     },
     {
       "id": 2,
       "writer": "조유민",
-      "contents": "두번째 방명록 내용이에요"
-    },
-    {
-      "writer": "tesrer",
-      "contents": "test333",
-      "id": 5
+      "contents": "두번째 방명록 내용이에요",
+      "edit": false
     },
     {
       "writer": "신샘",
       "contents": "남기고 싶은 말을 10자 이상!",
-      "id": 6
+      "id": 6,
+      "edit": false
     },
     {
-      "writer": "ㅁㅇㄹ",
-      "contents": "ㅂㅇㄹㄴㅁㅇ",
+      "writer": "테스트",
+      "contents": "테스트 방명록",
       "id": 7
     }
   ]

@@ -1,17 +1,38 @@
 import React from 'react'
 import styled from 'styled-components'
 import miniroom from '../miniroom.png'
+import axios from 'axios'
+import { useState, useEffect } from 'react'
 
 function MiddleHome() {
+    const [board, setBoard] = useState(null)
+    // 방명록 가져오기
+    const fetchBoard = () => {
+        axios.get('http://localhost:4000/board')
+            .then((res) => {
+                setBoard(res.data)
+            })
+            .catch(() => { console.log('실패') })
+    }
+
+
+    useEffect(() => {
+        fetchBoard()
+    }, [])
+
     return (
         <>
             <StMiddleBoard>
-                💬 1 | 안녕하세요 <br />
-                💬 2 | 방명록입니다 <br />
-                💬 3 | 누르면 상세 페이지로 이동해요 <br />
-                💬 4 | 내용이 길면 말줄임표가 보이도록 할거에요 <br />
-                💬 5 | 최대 6개까지만 보일거에요 <br />
-                💬 6 | 게시물 id순으로 보이게 할게요 <br />
+                {
+                    board?.map((v) => {
+                        return (
+                            <div>
+                                💬 {v.id} | {v.contents} <br />
+                            </div>
+                        )
+                    })
+                }
+
             </StMiddleBoard>
             <StMiddelImg style={{ backgroundImage: 'url(' + miniroom + ')' }}></StMiddelImg>
         </>
@@ -27,6 +48,7 @@ const StMiddleBoard = styled.div`
     margin-top: 20px;
     line-height: 30px;
     padding: 10px;
+    overflow: hidden;
     border-bottom-style: solid;
     border-bottom-width: 2px;
     border-bottom-style: black;

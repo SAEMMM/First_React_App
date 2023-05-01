@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import profileimg from '../profileimg.jpg'
 import axios from 'axios'
+import { NavLink } from 'react-router-dom'
+import { getBoard, addBoard } from '../api/boards'
+import { useQuery } from 'react-query'
+import { QueryClient, useMutation } from "react-query";
 
 
 function Visited() {
@@ -24,17 +28,16 @@ function Visited() {
     // 방명록 추가하기
     const onSubmitHandler = () => {
         axios.post('http://localhost:4000/board', addBoard)
-        .then(() => {
-            fetchBoard()
-        })
-        .catch(() => { console.log('추가 실패')})
+            .then(() => {
+                fetchBoard()
+            })
+            .catch(() => { console.log('추가 실패') })
     }
-
 
     // 방명록 삭제하기
     const onDeleteHandler = (boardId) => {
         axios.delete(`http://localhost:4000/board/${boardId}`)
-        alert('삭제되었습니다')
+        alert('삭제 되었습니다!')
         fetchBoard()
     }
 
@@ -72,15 +75,12 @@ function Visited() {
                             <VisitedBoxHeader>
                                 <VisitedBoxWriter>{v.writer}</VisitedBoxWriter>
                                 <MarginLeft>
-                                    <StBtn btn="수정">수정</StBtn>
+                                    <NavLink to={`/${v.id}`}><StBtn btn="더보기">더보기</StBtn></NavLink>
                                     <StBtn onClick={() => onDeleteHandler(v.id)} btn="삭제">삭제</StBtn>
                                 </MarginLeft>
                             </VisitedBoxHeader>
                             <VisitedBoxImg style={{ backgroundImage: 'url(' + profileimg + ')' }}></VisitedBoxImg>
-                            <VisitedBoxMsg>
-                                {v.contents}
-                                <p className='p'>더보기 ✍️</p>
-                            </VisitedBoxMsg>
+                            <VisitedBoxMsg>{v.contents}</VisitedBoxMsg>
                         </VisitedBoxLine>)
                     })
                 }
@@ -161,7 +161,7 @@ const StBtn = styled.button`
     width: 80px;
     height: 30px;
     background-color: ${props => props.btn === '확인' ? 'CornflowerBlue'
-        : (props => props.btn === '수정' ? 'MediumSeaGreen' : 'IndianRed')};
+        : (props => props.btn === '더보기' ? 'MediumSeaGreen' : 'IndianRed')};
     color: white;
     font-weight: bold;
     border: 1px solid black;
@@ -234,6 +234,18 @@ const VisitedBoxMsg = styled.div`
         }
     }
 
+`
+
+const VisitedBoxMsgUpdate = styled.textarea`
+    width: 400px;
+    height: 150px;
+    background-color: white;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 10px;
+    margin-left: 10px;
+    border: 1px solid black;
+    resize: none;
 `
 
 const MarginLeft = styled.div`

@@ -1,9 +1,15 @@
 import axios from "axios";
 
-// 모든 todos를 가져오는 api
-const getBoards= async () => {
-  const response = await axios.get("http://localhost:4000/board");
+const SERVER_URI = 'http://localhost:4000'
+
+// 모든 board를 가져오는 api
+const getBoard = async () => {
+  const response = await axios.get(`${SERVER_URI}/board`);
   return response;
 };
 
-export { getBoards };
+const addBoard = async (newBoard) => {
+    await axios.post(`${SERVER_URI}/board`, newBoard);
+  };
+
+export { getBoard, addBoard };
