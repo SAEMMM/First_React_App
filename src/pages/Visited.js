@@ -1,38 +1,91 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import profileimg from '../profileimg.jpg'
+import axios from 'axios'
+
 
 function Visited() {
+
+    // 방명록 관리 state
+    const [board, setBoard] = useState(null)
+    // 방명록 가져오기
+    const fetchBoard = () => {
+        axios.get('http://localhost:4000/board')
+            .then((res) => {
+                setBoard(res.data)
+            })
+            .catch(() => { console.log('실패') })
+    }
+
+    // 방명록 추가 state
+    const [addBoard, setAddBoard] = useState({
+        contents: '', writer: ''
+    })
+    // 방명록 추가하기
+    const onSubmitHandler = () => {
+        axios.post('http://localhost:4000/board', addBoard)
+        .then(() => {
+            fetchBoard()
+        })
+        .catch(() => { console.log('추가 실패')})
+    }
+
+
+    // 방명록 삭제하기
+    const onDeleteHandler = (boardId) => {
+        axios.delete(`http://localhost:4000/board/${boardId}`)
+        alert('삭제되었습니다')
+        fetchBoard()
+    }
+
+    useEffect(() => {
+        fetchBoard()
+    }, [])
+
     return (
         <Background>
             <StMiddle>
-
-                <VisitedInputBox>
-                    <VisitedInput placeholder='남기고 싶은 말을 10자 이상 작성해주세요!' />
-                    <VisitedInputFooter>
-                        <span className='span'>작성자 </span><VisitedInputWriter placeholder='8자 미만' />
-                        <StBtn btn="확인">확인 💬</StBtn>
-                    </VisitedInputFooter>
-                </VisitedInputBox>
-
-                <VisitedBoxLine>
-                    <VisitedBoxHeader>
-                        <VisitedBoxWriter>작성자</VisitedBoxWriter>
-                        <MarginLeft>
-                            <StBtn btn="수정">수정</StBtn>
-                            <StBtn btn="삭제">삭제</StBtn>
-                        </MarginLeft>
-                    </VisitedBoxHeader>
-                    <VisitedBoxImg style={{ backgroundImage: 'url(' + profileimg + ')' }}></VisitedBoxImg>
-                    <VisitedBoxMsg>
-                        방명록 남긴 데이터를 여기에 보여줄거에요<br />
-                        만약 말이 길어진다면.. 상세페이지 버튼을 눌러서 보면 된답니다<br />
-                        상세페이지는 portal을 사용해서 모달로^^.. 띄울거에요
-                    </VisitedBoxMsg>
-                </VisitedBoxLine>
-
+                <form onSubmit={() => {
+                    // e.preventDefault()
+                    onSubmitHandler()
+                }}>
+                    <VisitedInputBox>
+                        <VisitedInput placeholder='남기고 싶은 말을 10자 이상 작성해주세요!'
+                            value={addBoard.contents}
+                            onChange={(e) => {
+                                setAddBoard({ contents: e.target.value })
+                            }} />
+                        <VisitedInputFooter>
+                            <span className='span'>작성자 </span>
+                            <VisitedInputWriter placeholder='8자 미만'
+                                value={addBoard.writer}
+                                onChange={(e) => {
+                                    setAddBoard({ writer: e.target.value })
+                                }} />
+                            <StBtn btn="확인">확인 💬</StBtn>
+                        </VisitedInputFooter>
+                    </VisitedInputBox>
+                </form>
+                {
+                    board?.map((v) => {
+                        return (<VisitedBoxLine key={v.id}>
+                            <VisitedBoxHeader>
+                                <VisitedBoxWriter>{v.writer}</VisitedBoxWriter>
+                                <MarginLeft>
+                                    <StBtn btn="수정">수정</StBtn>
+                                    <StBtn onClick={() => onDeleteHandler(v.id)} btn="삭제">삭제</StBtn>
+                                </MarginLeft>
+                            </VisitedBoxHeader>
+                            <VisitedBoxImg style={{ backgroundImage: 'url(' + profileimg + ')' }}></VisitedBoxImg>
+                            <VisitedBoxMsg>
+                                {v.contents}
+                                <p className='p'>더보기 ✍️</p>
+                            </VisitedBoxMsg>
+                        </VisitedBoxLine>)
+                    })
+                }
             </StMiddle>
-        </Background>
+        </Background >
     )
 }
 
@@ -168,6 +221,19 @@ const VisitedBoxMsg = styled.div`
     padding: 10px;
     margin-left: 10px;
     border: 1px solid black;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    .p {
+        color: CornflowerBlue;
+        text-decoration: underline;
+        cursor: pointer;
+        &:hover {
+            filter: brightness(0.7);
+            transition: all 0.3s;
+        }
+    }
+
 `
 
 const MarginLeft = styled.div`

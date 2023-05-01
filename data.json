@@ -1,0 +1,27 @@
+{
+  "likes": [
+    {
+      "like": 8371
+    }
+  ],
+  "board": [
+    {
+      "id": 1,
+      "writer": "신샘",
+      "contents": "첫번째 방명록 내용이에요"
+    },
+    {
+      "id": 2,
+      "writer": "조유민",
+      "contents": "두번째 방명록 내용이에요"
+    },
+    {
+      "writer": "tester",
+      "id": 3
+    },
+    {
+      "writer": "테스터",
+      "id": 4
+    }
+  ]
+}

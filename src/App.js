@@ -7,14 +7,14 @@ import { Route, Routes, Outlet } from 'react-router-dom';
 
 function App() {
   return (
-    <StBackground>
-      <Profile />
-      <Routes>
-        <Route path="/" element={<MidMain />} />
-        <Route path="/visited" element={<Visited />} />
-      </Routes>
-      <Nav />
-    </StBackground>
+      <StBackground>
+        <Profile />
+        <Routes>
+          <Route path="/" element={<MidMain />} />
+          <Route path="/visited" element={<Visited />} />
+        </Routes>
+        <Nav />
+      </StBackground>
   );
 }
 
