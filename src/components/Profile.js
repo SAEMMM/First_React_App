@@ -7,7 +7,7 @@ function Profile() {
 
     // 좋아요 state
     const [like, setLike] = useState(8371)
-    // 좋아요 function
+    // 좋아요 click function
     const addLike = () => {
         setLike(like + 1)
     }
@@ -26,7 +26,9 @@ function Profile() {
                 <StProfileHr />
                 <StProfileName>
                     <span className='span'>신샘</span>(♀) 1996. 8. 30<br />
-                    Velog <span className='span'>saemmmm.log</span>
+                    Velog <span onClick={() => 
+                        window.open('https://velog.io/@saemmmm')} 
+                        className='velogLink'>saemmmm.log</span> 👈
                 </StProfileName>
                 <StProfileLike>
                     <FaHeart onClick={addLike} className='heart' />
@@ -70,6 +72,7 @@ const StProfileImg = styled.div`
     height: 200px;
     background-size: cover;
     background-position: center;
+    border: 1px solid black;
 `
 
 const StProfileMsg = styled.div`
@@ -93,6 +96,16 @@ const StProfileName = styled.div`
     .span {
         color: CornflowerBlue;
         font-weight: bold;
+    }
+    .velogLink {
+        color: CornflowerBlue;
+        font-weight: bold;
+        text-decoration: underline;
+        cursor: pointer;
+        &:hover {
+            filter: brightness(0.7);
+            transition: all 0.3s;
+        }
     }
 `
 

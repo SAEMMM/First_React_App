@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from "styled-components";
-import miniroom from '../miniroom.png'
+import MiddleHome from '../pages/MiddleHome';
+
 
 function MidMain() {
     return (
@@ -9,15 +10,7 @@ function MidMain() {
                 <StMiddleHeader>
                     <h1>First React App 🏠</h1>
                 </StMiddleHeader>
-                <StMiddleBoard>
-                    방명록1 | 안녕하세요 <br />
-                    방명록2 | 방명록입니다 <br />
-                    방명록3 | 누르면 상세 페이지로 이동해요 <br />
-                    방명록4 | 내용이 길면 말줄임표가 보이도록 할거에요 <br />
-                    방명록5 | 최대 6개까지만 보일거에요 <br />
-                    방명록6 | 게시물 id순으로 보이게 할게요 <br />
-                </StMiddleBoard>
-                <StMiddelImg style={{ backgroundImage: 'url(' + miniroom + ')' }}></StMiddelImg>
+                <MiddleHome />
             </StMiddle>
         </Background>
     )
@@ -62,25 +55,4 @@ const StMiddleHeader = styled.div`
     border-bottom-style: solid;
     border-bottom-width: 1px;
     border-bottom-style: black;
-`
-
-const StMiddleBoard = styled.div`
-    box-sizing: border-box;
-    width: 600px;
-    height: 200px;
-    margin-top: 20px;
-    line-height: 30px;
-    padding: 10px;
-    border-bottom-style: solid;
-    border-bottom-width: 2px;
-    border-bottom-style: black;
-`
-
-const StMiddelImg = styled.div`
-    width: 600px;
-    height: 400px;
-    margin-top: 20px;
-    background-size: cover;
-    background-position: center;
-    border: 1px solid black;
 `
