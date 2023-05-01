@@ -1,9 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from "styled-components";
 import { FaHeart } from "react-icons/fa";
 import profileimg from '../profileimg.jpg'
 
 function Profile() {
+
+    // 좋아요 state
+    const [like, setLike] = useState(8371)
+    // 좋아요 function
+    const addLike = () => {
+        setLike(like + 1)
+    }
+    // 좋아요 천단위 콤마
+    function commaAdd(num) {
+        const regexp = /\B(?=(\d{3})+(?!\d))/g
+        return num.toString().replace(regexp, ",")
+        }
+    
     return (
         <Background>
             <StLeftProfile>
@@ -16,8 +29,8 @@ function Profile() {
                     Velog <span className='span'>saemmmm.log</span>
                 </StProfileName>
                 <StProfileLike>
-                    <FaHeart className='heart' />
-                    <p>좋아요<br />9,134개</p>
+                    <FaHeart onClick={addLike} className='heart' />
+                    <p>좋아요<br />{commaAdd(like)}개</p>
                 </StProfileLike>
             </StLeftProfile>
         </Background>
