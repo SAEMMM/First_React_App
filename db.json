@@ -8,20 +8,17 @@
     {
       "id": 1,
       "writer": "신샘",
-      "contents": "첫번째 방명록 내용이에요",
-      "edit": false
+      "contents": "또 수정해볼게요"
     },
     {
       "id": 2,
       "writer": "조유민",
-      "contents": "두번째 방명록 내용이에요",
-      "edit": false
+      "contents": "두번째 방명록 수정"
     },
     {
       "writer": "신샘",
       "contents": "남기고 싶은 말을 10자 이상!",
-      "id": 6,
-      "edit": false
+      "id": 6
     },
     {
       "writer": "테스트",
@@ -29,9 +26,9 @@
       "id": 7
     },
     {
-      "writer": "뇸뇸",
-      "contents": "상세보기 테스트",
-      "id": 8
+      "writer": "샘또테",
+      "contents": "또 테스트",
+      "id": 9
     }
   ]
 }

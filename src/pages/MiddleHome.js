@@ -27,7 +27,7 @@ function MiddleHome() {
                 {
                     board?.map((v) => {
                         return (
-                            <NavLink to={`/${v.id}`}>
+                            <NavLink to={`/${v.id}`} key={v.id}>
                                 <div>
                                     💬 {v.id} | {v.contents} <br />
                                 </div>

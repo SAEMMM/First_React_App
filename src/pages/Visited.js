@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import profileimg from '../profileimg.jpg'
 import axios from 'axios'
 import { NavLink } from 'react-router-dom'
-import { getBoard, addBoard } from '../api/boards'
 import { useQuery } from 'react-query'
 import { QueryClient, useMutation } from "react-query";
 
@@ -70,17 +69,17 @@ function Visited() {
                     </VisitedInputBox>
                 </form>
                 {
-                    board?.map((v) => {
-                        return (<VisitedBoxLine key={v.id}>
+                    board?.map((item) => {
+                        return (<VisitedBoxLine key={item.id}>
                             <VisitedBoxHeader>
-                                <VisitedBoxWriter>{v.writer}</VisitedBoxWriter>
+                                <VisitedBoxWriter>{item.writer}</VisitedBoxWriter>
                                 <MarginLeft>
-                                    <NavLink to={`/${v.id}`}><StBtn btn="더보기">더보기</StBtn></NavLink>
-                                    <StBtn onClick={() => onDeleteHandler(v.id)} btn="삭제">삭제</StBtn>
+                                    <NavLink to={`/${item.id}`}><StBtn btn="더보기">더보기</StBtn></NavLink>
+                                    <StBtn onClick={() => onDeleteHandler(item.id)} btn="삭제">삭제</StBtn>
                                 </MarginLeft>
                             </VisitedBoxHeader>
                             <VisitedBoxImg style={{ backgroundImage: 'url(' + profileimg + ')' }}></VisitedBoxImg>
-                            <VisitedBoxMsg>{v.contents}</VisitedBoxMsg>
+                            <VisitedBoxMsg>{item.contents}</VisitedBoxMsg>
                         </VisitedBoxLine>)
                     })
                 }

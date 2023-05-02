@@ -3,26 +3,47 @@ import styled from 'styled-components'
 import { useParams } from "react-router-dom"
 import axios from 'axios'
 import { useState, useEffect } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 
-function VisitedDetail() {
+function VisitedDetailEdit() {
+
+    let navigate = useNavigate()
 
     // 방명록 관리 state
     const [board, setBoard] = useState(null)
     // 방명록 가져오기
     const fetchBoard = () => {
-        axios.get('http://localhost:4000/board')
+        axios.get('http://localhost:4000/board/')
             .then((res) => {
                 setBoard(res.data)
             })
             .catch(() => { console.log('실패') })
     }
+    console.log(board)
 
     let { id } = useParams()
 
     let detail = board?.find((item) => {
         return item.id === parseInt(id)
     })
+
+    // 방명록 수정 state
+    const [edit, setEdit] = useState('')
+    // 방명록 수정하기
+    const onEditHandler = () => {
+        axios.patch(`http://localhost:4000/board/${id}`, {
+            contents: edit, writer: board.writer
+        })
+        board?.map(item => {
+            if (item.id == id) {
+                return { ...item, contents: edit }
+            } else {
+                return item
+            }
+        })
+        alert('수정 되었습니다!')
+        navigate('/visited')
+    }
 
     useEffect(() => {
         fetchBoard()
@@ -33,21 +54,22 @@ function VisitedDetail() {
             <StMiddle>
                 <DetailBox>
                     <CenterDiv>
-                        <NavLink to={'/visited'}><StBtn btn='목록'>목록</StBtn></NavLink>
-                        <NavLink to={`/${id}/edit`}><StBtn btn='수정'>수정</StBtn></NavLink>
+                        <StBtn onClick={onEditHandler} btn='완료'>완료</StBtn>
+                        <NavLink to={'/visited'}><StBtn btn='취소'>취소</StBtn></NavLink>
                     </CenterDiv>
-                    <h1>방명록 상세보기 👀</h1>
-                    <DetailBoxMsg>
-                        <p className='pBold'>작성자 💬 {detail && detail.writer}</p>
-                        {detail && detail.contents}
-                    </DetailBoxMsg>
+                    <h1>방명록 수정하기 ✍️</h1>
+                    <p className='pBold'>작성자 💬 {detail && detail.writer}</p>
+                    <DetailBoxEdit value={edit} onChange={(e) => {
+                        setEdit(e.target.value)
+                    }}>
+                    </DetailBoxEdit>
                 </DetailBox>
             </StMiddle>
         </Background>
     )
 }
 
-export default VisitedDetail
+export default VisitedDetailEdit
 
 const Background = styled.div`
     width: 670px;
@@ -90,14 +112,15 @@ const DetailBox = styled.div`
     }
 `
 
-const DetailBoxMsg = styled.div`
+const DetailBoxEdit = styled.textarea`
     width: 550px;
-    height: 500px;
+    height: 400px;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 5px;
+    resize: none;
     box-sizing: border-box;
     padding: 10px;
-    background-color: white;
-    border: 1px solid black;
-    border-radius: 5px;
 `
 
 const CenterDiv = styled.div`
@@ -106,7 +129,7 @@ const CenterDiv = styled.div`
 const StBtn = styled.button`
     width: 80px;
     height: 30px;
-    background-color: ${props => props.btn === '목록' ? 'CornflowerBlue'
+    background-color: ${props => props.btn === '완료' ? 'CornflowerBlue'
         : (props => props.btn === '수정' ? 'MediumSeaGreen' : 'IndianRed')};
     color: white;
     font-weight: bold;

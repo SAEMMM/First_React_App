@@ -3,9 +3,10 @@ import MidMain from "./components/MidMain";
 import Nav from "./components/Nav";
 import Profile from "./components/Profile";
 import Visited from "./pages/Visited";
-import { Route, Routes, Outlet } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import VisitedDetail from "./pages/VisitedDetail";
 import { QueryClient, QueryClientProvider } from "react-query"
+import VisitedDetailEdit from "./pages/VisitedDetailEdit";
 
 const queryClient = new QueryClient();
 
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<MidMain />} />
           <Route path="/visited" element={<Visited />} />
           <Route path="/:id" element={<VisitedDetail />} />
+          <Route path="/:id/edit" element={<VisitedDetailEdit />} />
         </Routes>
         <Nav />
       </StBackground>
