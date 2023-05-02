@@ -1,23 +1,24 @@
 import React from 'react'
 import styled from 'styled-components'
 import miniroom from '../miniroom.png'
+import { NavLink } from 'react-router-dom'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
-import { NavLink } from 'react-router-dom'
 
-function MiddleHome() {
+function MidHome() {
 
-    const [board, setBoard] = useState(null)
-    // 방명록 가져오기
-    const fetchBoard = () => {
-        axios.get('http://localhost:4000/board')
-            .then((res) => {
-                setBoard(res.data)
-            })
-            .catch(() => { console.log('실패') })
-    }
+     // 방명록 관리 state
+     const [board, setBoard] = useState(null)
+     // 방명록 가져오기
+     const fetchBoard = () => {
+         axios.get(`${process.env.REACT_APP_SERVER_URL}/board`)
+             .then((res) => {
+                 setBoard(res.data)
+             })
+             .catch(() => { console.log('실패') })
+     }
 
-    useEffect(() => {
+     useEffect(() => {
         fetchBoard()
     }, [])
 
@@ -35,14 +36,13 @@ function MiddleHome() {
                         )
                     })
                 }
-
             </StMiddleBoard>
             <StMiddelImg style={{ backgroundImage: 'url(' + miniroom + ')' }}></StMiddelImg>
         </>
     )
 }
 
-export default MiddleHome
+export default MidHome
 
 const StMiddleBoard = styled.div`
     box-sizing: border-box;

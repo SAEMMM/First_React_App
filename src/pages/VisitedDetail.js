@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import * as S from '../style/Styles'
 import { useParams } from "react-router-dom"
 import axios from 'axios'
 import { useState, useEffect } from 'react'
@@ -11,7 +12,7 @@ function VisitedDetail() {
     const [board, setBoard] = useState(null)
     // 방명록 가져오기
     const fetchBoard = () => {
-        axios.get('http://localhost:4000/board')
+        axios.get(`${process.env.REACT_APP_SERVER_URL}/board`)
             .then((res) => {
                 setBoard(res.data)
             })
@@ -29,13 +30,13 @@ function VisitedDetail() {
     }, [])
 
     return (
-        <Background>
+        <S.Background size="MidMain">
             <StMiddle>
                 <DetailBox>
-                    <CenterDiv>
-                        <NavLink to={'/visited'}><StBtn btn='목록'>목록</StBtn></NavLink>
-                        <NavLink to={`/${id}/edit`}><StBtn btn='수정'>수정</StBtn></NavLink>
-                    </CenterDiv>
+                    <div>
+                        <NavLink to={'/visited'}><S.StBtn btn='기본' size='기본'>목록</S.StBtn></NavLink>
+                        <NavLink to={`/${id}/edit`}><S.StBtn btn='기능' size='기본'>수정</S.StBtn></NavLink>
+                    </div>
                     <h1>방명록 상세보기 👀</h1>
                     <DetailBoxMsg>
                         <p className='pBold'>작성자 💬 {detail && detail.writer}</p>
@@ -43,23 +44,11 @@ function VisitedDetail() {
                     </DetailBoxMsg>
                 </DetailBox>
             </StMiddle>
-        </Background>
+        </S.Background>
     )
 }
 
 export default VisitedDetail
-
-const Background = styled.div`
-    width: 670px;
-    height: 820px;
-    padding: 40px 0px 10px 0px;
-    box-sizing: border-box;
-    background-color: Silver;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    border-radius: 20px;
-`
 
 const StMiddle = styled.div`
   width: 650px;
@@ -98,27 +87,4 @@ const DetailBoxMsg = styled.div`
     background-color: white;
     border: 1px solid black;
     border-radius: 5px;
-`
-
-const CenterDiv = styled.div`
-
-`
-const StBtn = styled.button`
-    width: 80px;
-    height: 30px;
-    background-color: ${props => props.btn === '목록' ? 'CornflowerBlue'
-        : (props => props.btn === '수정' ? 'MediumSeaGreen' : 'IndianRed')};
-    color: white;
-    font-weight: bold;
-    border: 1px solid black;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-right: 5px;
-    &:hover {
-        filter: brightness(0.7);
-        transition: all 0.3s;
-    }
-    &:active {
-        background-color: LightSlateGrey;
-    }
 `
