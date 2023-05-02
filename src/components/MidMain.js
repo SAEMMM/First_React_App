@@ -4,6 +4,7 @@ import MiddleHome from '../pages/MiddleHome';
 
 
 function MidMain() {
+
     return (
         <Background>
             <StMiddle>

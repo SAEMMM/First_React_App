@@ -35,8 +35,8 @@ function VisitedDetail() {
                     <NavLink to={'/visited'}><StBtn btn='목록'>목록</StBtn></NavLink>
                     <StBtn btn='수정'>수정</StBtn>
                     <h1>방명록 상세보기 👀</h1>
-                    <p className='pBold'>작성자 💬 {detail.writer}</p>
-                    {detail.contents}
+                    <p className='pBold'>작성자 💬 {detail && detail.writer}</p>
+                    {detail && detail.contents}
                 </DetailBox>
             </StMiddle>
         </Background>

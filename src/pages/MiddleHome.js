@@ -3,8 +3,10 @@ import styled from 'styled-components'
 import miniroom from '../miniroom.png'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
+import { NavLink } from 'react-router-dom'
 
 function MiddleHome() {
+
     const [board, setBoard] = useState(null)
     // 방명록 가져오기
     const fetchBoard = () => {
@@ -14,7 +16,6 @@ function MiddleHome() {
             })
             .catch(() => { console.log('실패') })
     }
-
 
     useEffect(() => {
         fetchBoard()
@@ -26,9 +27,11 @@ function MiddleHome() {
                 {
                     board?.map((v) => {
                         return (
-                            <div>
-                                💬 {v.id} | {v.contents} <br />
-                            </div>
+                            <NavLink to={`/${v.id}`}>
+                                <div>
+                                    💬 {v.id} | {v.contents} <br />
+                                </div>
+                            </NavLink>
                         )
                     })
                 }
